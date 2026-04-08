@@ -104,12 +104,26 @@ body {
 }
 
 .hero-bg img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 45%;
   opacity: 0;
   animation: heroImgIn 2s 0.2s forwards;
+}
+
+/* Blurred background fill — covers the entire hero, darkened */
+.hero-bg-blur {
+  object-fit: cover;
+  object-position: center 45%;
+  filter: blur(30px) brightness(0.5);
+  transform: scale(1.15); /* hide blur edges */
+}
+
+/* Main image — full couple visible via contain */
+.hero-bg-main {
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 @keyframes heroImgIn {
@@ -1122,7 +1136,9 @@ section, .full-section {
 
 /* ========== Responsive ========== */
 @media (max-width: 768px) {
-  .hero-bg img { object-position: center 35%; }
+  /* Mobile: portrait image fits naturally, no blur needed */
+  .hero-bg-blur { display: none; }
+  .hero-bg-main { object-fit: cover; object-position: center 35%; }
   .hero-content { top: 10rem; left: 0; right: 0; padding: 0 1rem; }
   /* scroll-hint: clear right:0 from desktop so left/right:0 stays intact */
   .scroll-hint { left: 0; right: 0; transform: none; }
@@ -1205,7 +1221,8 @@ section, .full-section {
 <!-- Hero Section -->
 <section class="hero" id="hero">
   <div class="hero-bg">
-    <img src="pic/1.png" alt="Peter and Mary">
+    <img class="hero-bg-blur" src="pic/1.png" alt="" aria-hidden="true">
+    <img class="hero-bg-main" src="pic/1.png" alt="Peter and Mary">
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-frame"></div>
@@ -1533,40 +1550,6 @@ section, .full-section {
 
   // ========== Wedding Date ==========
   const WEDDING_DATE = new Date('2026-10-10T18:00:00+08:00');
-
-  // ========== Hero Image Focus ==========
-  // Portrait image (842×1264) in landscape desktop container (1440×900):
-  // Scaled by width → 1440×2160, overflow = 1260px.
-  // Faces at y≈40% of original (505px) → scaled 863px.
-  // object-position y% sets crop start = overflow × y%.
-  // center 45% → crop start 567px → face 296px from top ✓
-  // On mobile, portrait image fills height natively — position has minimal effect.
-  const heroImg = document.querySelector('.hero-bg img');
-  if (heroImg) {
-    function setHeroFocus() {
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const iw = heroImg.naturalWidth  || 842;
-      const ih = heroImg.naturalHeight || 1264;
-      // Scale factor when object-fit:cover fills the container
-      const scale = Math.max(vw / iw, vh / ih);
-      const scaledH = ih * scale;
-      const overflow = scaledH - vh;
-      if (overflow <= 0) return; // image shorter than container, no cropping
-      // Keep faces (at ~40% of image height) centred vertically with padding
-      const facePx  = ih * 0.40 * scale;          // face y in scaled image
-      const ideal   = facePx - vh * 0.35;          // put face 35% from top of viewport
-      const pct     = Math.min(100, Math.max(0, (ideal / overflow) * 100));
-      heroImg.style.objectPosition = `center ${pct.toFixed(1)}%`;
-    }
-
-    if (heroImg.complete && heroImg.naturalWidth > 0) {
-      setHeroFocus();
-    } else {
-      heroImg.addEventListener('load', setHeroFocus, { once: true });
-    }
-    window.addEventListener('resize', setHeroFocus, { passive: true });
-  }
 
   // ========== Nav Scroll ==========
   const nav = document.getElementById('nav');
