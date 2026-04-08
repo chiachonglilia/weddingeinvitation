@@ -1129,12 +1129,15 @@ section, .full-section {
 @media (max-width: 768px) {
   .hero-bg img { object-fit: cover; width: 100%; height: 100%; }
   .hero-content { top: 10rem; left: 0; right: 0; padding: 0 1rem; }
-  .scroll-hint { left: 50%; transform: translateX(-50%); }
+  /* scroll-hint: clear right:0 from desktop so left/right:0 stays intact */
+  .scroll-hint { left: 0; right: 0; transform: none; }
   .hero-frame { inset: 0.8rem; }
   .hero-names-row h1 { font-size: clamp(1.6rem, 7vw, 2.5rem); }
   .hero-names-row .hero-amp { font-size: 1rem; }
-  .nav { gap: 1.2rem; padding: 1rem 0.8rem; }
-  .nav a { font-size: 0.75rem; letter-spacing: 2px; }
+  /* Tighten nav so all 6 items fit one row; push lang-btn below nav */
+  .nav { gap: 0.8rem; padding: 0.8rem 0.5rem; flex-wrap: nowrap; }
+  .nav a { font-size: 0.65rem; letter-spacing: 1px; }
+  .lang-btn { top: 3.5rem; right: 0.8rem; }
 
   section, .full-section { padding: 5rem 1.5rem; }
 
