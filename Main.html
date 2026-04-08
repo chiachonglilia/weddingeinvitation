@@ -1563,9 +1563,9 @@ section, .full-section {
           heroBg.classList.add('bg-image-mode');
           inBgMode = true;
         }
-        // 230% of viewport width zooms out just enough to show both faces
-        heroBg.style.backgroundSize = `${Math.round(window.innerWidth * 2.3)}px auto`;
-        heroBg.style.backgroundPosition = '42% 0%';
+        // 220% of viewport width zooms out enough to show both faces
+        heroBg.style.backgroundSize = `${Math.round(window.innerWidth * 2.2)}px auto`;
+        heroBg.style.backgroundPosition = '46% 0%';
       } else {
         // Landscape / desktop: restore object-fit cover with dynamic position
         if (inBgMode) {
