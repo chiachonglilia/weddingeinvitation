@@ -1534,23 +1534,37 @@ section, .full-section {
   // ========== Wedding Date ==========
   const WEDDING_DATE = new Date('2026-10-10T18:00:00+08:00');
 
-  // ========== Hero Image Dynamic Focus ==========
-  // Portrait mobile: image is landscape (1264×842), crop cuts off one character.
-  // Desktop/landscape only: dynamic object-position to keep couple visible on resize
+  // ========== Hero Image Smart Focus ==========
+  // Uses smartcrop.js to auto-detect subject position — no manual tuning needed per image.
   const heroImg = document.querySelector('.hero-bg img');
-  if (heroImg && window.innerWidth > window.innerHeight) {
-    const FOCUS_X = parseFloat(heroImg.dataset.focusX ?? 50);
-    const FOCUS_Y = parseFloat(heroImg.dataset.focusY ?? 55);
-
-    function adjustHeroFocus() {
-      if (window.innerWidth <= window.innerHeight) return; // CSS handles portrait
-      const ar = window.innerWidth / window.innerHeight;
-      const y = ar >= 1.2 ? FOCUS_Y : FOCUS_Y + (50 - FOCUS_Y) * (1.2 - ar) / 0.45;
-      heroImg.style.objectPosition = `${FOCUS_X}% ${y.toFixed(1)}%`;
+  if (heroImg) {
+    function applySmartCrop(img) {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      SmartCrop.crop(img, { width: vw, height: vh, minScale: 1 }).then(function(result) {
+        const crop = result.topCrop;
+        const x = ((crop.x + crop.width  / 2) / img.naturalWidth  * 100).toFixed(1);
+        const y = ((crop.y + crop.height / 2) / img.naturalHeight * 100).toFixed(1);
+        img.style.objectPosition = `${x}% ${y}%`;
+      });
     }
 
-    adjustHeroFocus();
-    window.addEventListener('resize', adjustHeroFocus, { passive: true });
+    function loadSmartCropAndApply() {
+      if (window.SmartCrop) { applySmartCrop(heroImg); return; }
+      const s = document.createElement('script');
+      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/smartcrop/2.0.5/smartcrop.min.js';
+      s.onload = function() { applySmartCrop(heroImg); };
+      document.head.appendChild(s);
+    }
+
+    if (heroImg.complete && heroImg.naturalWidth > 0) {
+      loadSmartCropAndApply();
+    } else {
+      heroImg.addEventListener('load', loadSmartCropAndApply, { once: true });
+    }
+    window.addEventListener('resize', function() {
+      if (window.SmartCrop) applySmartCrop(heroImg);
+    }, { passive: true });
   }
 
   // ========== Nav Scroll ==========
