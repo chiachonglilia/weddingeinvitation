@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peter &amp; Mary | Wedding Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Josefin+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ========== Reset & Base ========== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --brown-deep: #685D54;
+  --brown: #6B5244;
+  --taupe: #8B7D6B;
+  --sand: #C4A882;
+  --tan: #D4C4A8;
+  --cream: #A39382;
+  --warm-white: #FFF9F2;
+  --terracotta: #B8805A;
+  --blush: #E8D5C4;
+  --muted: #A89888;
+  --light-gray: #EDE8E2;
+  --font-serif: 'Cormorant Garamond', 'Lora', serif;
+  --font-sans: 'Cormorant Garamond', 'Lora', serif;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--font-sans);
+  background: #ffffff;
+  color: var(--brown-deep);
+  overflow-x: hidden;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* ========== Scrollbar ========== */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #ffffff; }
+::-webkit-scrollbar-thumb { background: var(--sand); border-radius: 3px; }
+
+/* ========== Navigation ========== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 3.2rem 2rem 1.2rem;
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  transition: background 0.4s, box-shadow 0.4s;
+}
+
+.nav.scrolled {
+  background: rgba(250, 246, 240, 0.95);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 20px rgba(74,55,40,0.06);
+}
+
+.nav a {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(250,246,240,0.8);
+  text-decoration: none;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+.nav.scrolled a { color: var(--brown); }
+
+.nav a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: var(--sand);
+  transition: width 0.3s;
+  margin-top: 2px;
+}
+
+.nav a:hover::after { width: 100%; }
+
+/* ========== Hero ========== */
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 650px;
+  overflow: hidden;
+  background: #1a1410;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  opacity: 0;
+  animation: heroImgIn 2s 0.2s forwards;
+}
+
+@keyframes heroImgIn {
+  from { opacity: 0; transform: scale(1.05); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Overlay — darker at top for text readability */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to bottom,
+      rgba(26,20,16,0.8) 0%,
+      rgba(26,20,16,0.5) 18%,
+      rgba(26,20,16,0.05) 40%,
+      rgba(26,20,16,0.0) 60%,
+      rgba(26,20,16,0.25) 100%);
+}
+
+/* Thin gold frame */
+.hero-frame {
+  position: absolute;
+  inset: 1.5rem;
+  border: 1px solid rgba(196,168,130,0.18);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Top center content */
+.hero-content {
+  position: absolute;
+  top: 16rem;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  text-align: center;
+}
+
+.hero-pre {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: #ffffff;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.6s forwards;
+}
+
+.hero-names-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 1s 0.9s forwards;
+}
+
+.hero-names-row h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5.5vw, 4rem);
+  font-weight: 300;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 25px rgba(0,0,0,0.6);
+}
+
+.hero-names-row .hero-amp {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: #ffffff;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.5);
+}
+
+.hero-date {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5.5vw, 4rem);
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 5px;
+  margin-top: 1rem;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  opacity: 0;
+  animation: fadeUp 1s 1.2s forwards;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  opacity: 0;
+  animation: fadeUp 1s 2s forwards;
+}
+
+.scroll-hint span {
+  font-size: 0.65rem;
+  color: rgba(250,246,240,0.3);
+  letter-spacing: 4px;
+}
+
+.scroll-arrow {
+  width: 12px;
+  height: 12px;
+  border-right: 1px solid rgba(196,168,130,0.4);
+  border-bottom: 1px solid rgba(196,168,130,0.4);
+  transform: rotate(45deg);
+  animation: bounceDown 2.5s infinite;
+}
+
+
+/* ========== Falling Petals ========== */
+.petal {
+  position: fixed;
+  top: -20px;
+  z-index: 9;
+  pointer-events: none;
+  animation: petalFall linear forwards;
+}
+
+.petal-leaf {
+  width: 14px;
+  height: 20px;
+  background: var(--sand);
+  border-radius: 50% 0 50% 0;
+  opacity: 0.5;
+  box-shadow: 0 2px 6px rgba(74,55,40,0.15);
+}
+
+@keyframes petalFall {
+  0%   { transform: translateX(0) rotate(0deg) scale(1); opacity: 0; }
+  5%   { opacity: 0.6; }
+  30%  { transform: translateX(50px) rotate(100deg) scale(0.95); opacity: 0.55; }
+  60%  { transform: translateX(-40px) rotate(220deg) scale(0.85); opacity: 0.45; }
+  100% { transform: translateX(30px) rotate(360deg) scale(0.7); opacity: 0; top: 105vh; }
+}
+
+/* ========== Sections Common ========== */
+section, .full-section {
+  padding: 7rem 2rem;
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.full-section {
+  max-width: 100%;
+}
+
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--terracotta);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+  font-weight: 300;
+  color: var(--brown-deep);
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+}
+
+.section-sub {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--muted);
+  margin-bottom: 3rem;
+  letter-spacing: 1px;
+}
+
+.section-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--sand);
+  margin: 0 auto 3rem;
+}
+
+/* ========== Message Section ========== */
+.message-section {
+  background: #ffffff;
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.message-text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--brown-deep);
+  font-weight: 500;
+  line-height: 2;
+  max-width: 700px;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+/* ========== Countdown ========== */
+.countdown-section {
+  background: #ffffff;
+  text-align: center;
+  padding: 5rem 2rem;
+}
+
+.countdown-section .section-label { color: var(--terracotta); opacity: 1; }
+.countdown-section .section-title { color: var(--brown-deep); }
+.countdown-section .section-sub { color: var(--muted); }
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.countdown-number {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 300;
+  color: var(--brown-deep);
+  line-height: 1;
+  transition: transform 0.3s;
+}
+
+.countdown-unit {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--brown-deep);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+}
+
+.countdown-sep {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: rgba(196,168,130,0.2);
+  align-self: flex-start;
+  margin-top: 0.8rem;
+}
+
+/* ========== Timeline ========== */
+.timeline-section { text-align: center; }
+
+.timeline {
+  position: relative;
+  margin-top: 3rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--light-gray);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+
+.timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.timeline-item:nth-child(odd) {
+  margin-left: 0;
+  text-align: right;
+  padding-right: 3rem;
+}
+
+.timeline-item:nth-child(even) {
+  margin-left: 50%;
+  text-align: left;
+  padding-left: 3rem;
+}
+
+.timeline-dot {
+  position: absolute;
+  top: 2.5rem;
+  width: 10px;
+  height: 10px;
+  background: var(--terracotta);
+  border-radius: 50%;
+  border: 3px solid var(--cream);
+  box-shadow: 0 0 0 1px var(--terracotta);
+}
+
+.timeline-item:nth-child(odd) .timeline-dot { right: -5px; }
+.timeline-item:nth-child(even) .timeline-dot { left: -5px; }
+
+.timeline-year {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--terracotta);
+  letter-spacing: 4px;
+  margin-bottom: 0.3rem;
+}
+
+.timeline-event {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--brown-deep);
+  margin-bottom: 0.4rem;
+}
+
+.timeline-desc {
+  font-size: 1rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.9;
+}
+
+/* ========== Gallery ========== */
+.gallery-section {
+  background: var(--brown-deep);
+  padding: 6rem 2rem;
+  text-align: center;
+}
+
+.gallery-section .section-label { color: var(--sand); opacity: 0.7; }
+.gallery-section .section-title { color: var(--cream); }
+.gallery-section .section-sub { color: rgba(250,246,240,0.4); }
+
+.carousel {
+  position: relative;
+  max-width: 850px;
+  margin: 2rem auto 0;
+}
+
+.carousel-track {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  background: rgba(0,0,0,0.15);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.carousel-slide.active { opacity: 1; }
+
+.carousel-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Photo metadata overlay */
+.carousel-slide .photo-meta {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: rgba(250,246,240,0.4);
+  letter-spacing: 2px;
+  background: rgba(0,0,0,0.3);
+  padding: 0.3rem 0.6rem;
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(250,246,240,0.1);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(250,246,240,0.15);
+  color: var(--cream);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+  z-index: 2;
+}
+
+.carousel-btn:hover { background: rgba(250,246,240,0.25); }
+.carousel-btn.prev { left: 1rem; }
+.carousel-btn.next { right: 1rem; }
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(250,246,240,0.2);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.carousel-dot.active {
+  background: var(--sand);
+  transform: scale(1.4);
+}
+
+/* ========== Wedding Info ========== */
+.info-section { text-align: center; }
+.info-section .section-label { color: var(--terracotta); }
+.info-section .section-title { color: var(--brown-deep); }
+.info-section .section-sub { color: var(--muted); }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.info-card {
+  padding: 2.5rem 2rem;
+  background: #ffffff;
+  border: 1px solid var(--light-gray);
+  border-radius: 2px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.info-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(74,55,40,0.06);
+}
+
+.info-icon {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.info-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--brown-deep);
+  margin-bottom: 0.5rem;
+}
+
+.info-card p {
+  font-size: 1.15rem;
+  color: var(--muted);
+  font-weight: 300;
+  line-height: 1.9;
+}
+
+/* ========== Mini Calendar ========== */
+.info-card-cal {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+}
+
+.mini-cal {
+  width: 100%;
+  overflow: hidden;
+}
+
+.mini-cal-header {
+  background: var(--light-gray);
+  color: var(--brown-deep);
+  text-align: center;
+  padding: 0.8rem;
+}
+
+.mini-cal-header h4 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.mini-cal-header span {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.mini-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  padding: 0.6rem 1rem 1rem;
+  gap: 0;
+  background: transparent;
+}
+
+.mini-cal-grid .day-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 1px;
+  padding: 0.4rem 0;
+  text-transform: uppercase;
+}
+
+.mini-cal-grid .day {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--brown-deep);
+  padding: 0.45rem 0;
+  position: relative;
+}
+
+.mini-cal-grid .day.empty {
+  color: transparent;
+}
+
+.mini-cal-grid .day.muted {
+  color: var(--light-gray);
+}
+
+.mini-cal-grid .day.highlight {
+  color: var(--brown-deep);
+  font-weight: 700;
+  font-size: 1.3rem;
+  z-index: 1;
+}
+
+.mini-cal-grid .day.highlight::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 2px solid var(--sand);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.map-container {
+  margin-top: 3rem;
+  border-radius: 2px;
+  overflow: hidden;
+  border: none;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 350px;
+  border: 0;
+}
+
+.map-btns {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  justify-content: center;
+}
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  border: 1px solid var(--brown);
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--brown);
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+.map-btn:hover { background: var(--brown); color: #ffffff; }
+
+/* ========== RSVP ========== */
+.rsvp-section {
+  background: #ffffff;
+  text-align: center;
+}
+
+.rsvp-form {
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.rsvp-field {
+  margin-bottom: 1.8rem;
+}
+
+.rsvp-field label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--brown-deep);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.rsvp-field input[type="text"],
+.rsvp-field input[type="email"],
+.rsvp-field input[type="tel"],
+.rsvp-field select,
+.rsvp-field textarea {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--brown-deep);
+  background: #ffffff;
+  border: 1px solid var(--light-gray);
+  border-radius: 2px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  -webkit-appearance: none;
+}
+
+.rsvp-field input::placeholder,
+.rsvp-field textarea::placeholder { color: var(--muted); }
+
+.rsvp-field input:focus,
+.rsvp-field select:focus,
+.rsvp-field textarea:focus {
+  border-color: var(--sand);
+  box-shadow: 0 0 0 3px rgba(196,168,130,0.12);
+}
+
+.rsvp-field textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.rsvp-field select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236B5244' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.rsvp-attendance {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+  margin-bottom: 1.8rem;
+}
+
+.rsvp-radio {
+  flex: 1;
+  position: relative;
+}
+
+.rsvp-radio input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.rsvp-radio label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 1rem;
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--brown-deep);
+  background: #ffffff;
+  border: 1px solid var(--light-gray);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.rsvp-radio input:checked + label {
+  background: var(--brown-deep);
+  color: #ffffff;
+  border-color: var(--brown-deep);
+}
+
+.rsvp-radio label:hover {
+  border-color: var(--sand);
+}
+
+.rsvp-submit {
+  display: block;
+  width: 100%;
+  padding: 1.1rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-weight: 300;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: var(--brown-deep);
+  border: 1px solid var(--brown-deep);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 0.5rem;
+}
+
+.rsvp-submit:hover {
+  background: var(--brown);
+  transform: translateY(-2px);
+}
+
+.rsvp-submit:active {
+  transform: translateY(0);
+}
+
+.rsvp-success {
+  display: none;
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.rsvp-success.show {
+  display: block;
+  animation: fadeUp 0.6s forwards;
+}
+
+.rsvp-success-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.rsvp-success h3 {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 300;
+  color: var(--brown-deep);
+  margin-bottom: 0.8rem;
+}
+
+.rsvp-success p {
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+/* ========== Closing Message ========== */
+.closing-section {
+  background: #ffffff;
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+.closing-section .section-label { color: var(--terracotta); opacity: 1; font-weight: 700; }
+
+.closing-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--brown-deep);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+.closing-names {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  color: var(--brown-deep);
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+/* ========== Footer ========== */
+.footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: #ffffff;
+}
+
+.footer-names {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--brown);
+  letter-spacing: 4px;
+}
+
+.footer-date {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 4px;
+  margin-top: 0.5rem;
+}
+
+.footer-line {
+  width: 30px;
+  height: 1px;
+  background: var(--sand);
+  margin: 1.5rem auto;
+}
+
+.footer-copy {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: #ccc;
+  letter-spacing: 3px;
+}
+
+/* ========== Music Button ========== */
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  50% { box-shadow: 0 4px 25px rgba(196,168,130,0.25); }
+}
+
+/* ========== Scroll Animations ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== Enter Overlay ========== */
+.enter-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(255,255,255,0.97);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.8s ease;
+}
+.enter-overlay.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.enter-overlay-names {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--brown-deep);
+  letter-spacing: 4px;
+  margin-bottom: 0.5rem;
+}
+.enter-overlay-sub {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--muted);
+  letter-spacing: 3px;
+  margin-bottom: 3rem;
+  font-style: italic;
+}
+.enter-overlay-btn {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--brown-deep);
+  border: 1px solid var(--brown-deep);
+  padding: 0.8rem 2.5rem;
+  background: transparent;
+  cursor: pointer;
+  animation: musicPulse 2s ease-in-out infinite;
+}
+
+/* ========== Language Toggle ========== */
+.lang-btn {
+  position: fixed;
+  top: 1rem;
+  right: 1.5rem;
+  z-index: 1001;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.3s, color 0.3s;
+}
+.lang-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* ========== Music Toggle ========== */
+.music-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1001;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.4);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.3s, color 0.3s;
+  animation: musicPulse 2s ease-in-out infinite;
+}
+.music-btn.playing { animation: none; }
+.music-btn:hover { background: rgba(255,255,255,0.2); }
+@keyframes musicPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ========== Keyframes ========== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50% { transform: rotate(45deg) translateY(6px); }
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .hero-bg img { object-position: center 20%; object-fit: cover; width: 100%; height: 100%; }
+  .hero-content { bottom: 5rem; top: auto; left: 0; right: 0; padding: 0 1rem; }
+  .scroll-hint { left: 50%; transform: translateX(-50%); }
+  .hero-frame { inset: 0.8rem; }
+  .hero-content { bottom: 4rem; top: auto; }
+  .hero-names-row h1 { font-size: clamp(1.6rem, 7vw, 2.5rem); }
+  .hero-names-row .hero-amp { font-size: 1rem; }
+  .nav { gap: 1.2rem; padding: 1rem 0.8rem; }
+  .nav a { font-size: 0.75rem; letter-spacing: 2px; }
+
+  section, .full-section { padding: 5rem 1.5rem; }
+
+  .countdown { gap: 1rem; }
+  .countdown-sep { display: none; }
+
+  .timeline::before { left: 16px; }
+
+  .timeline-item,
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    width: 100%;
+    margin-left: 0;
+    text-align: left;
+    padding-left: 2.8rem;
+    padding-right: 0.5rem;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-dot,
+  .timeline-item:nth-child(even) .timeline-dot {
+    left: 11px;
+    right: auto;
+  }
+
+  .carousel-track { height: 350px; }
+  .carousel-btn { width: 36px; height: 36px; font-size: 0.9rem; }
+
+  .info-grid { grid-template-columns: 1fr; }
+  .map-container iframe { height: 250px; }
+
+  .rsvp-attendance { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .hero-names { letter-spacing: 1px; }
+  .countdown-number { font-size: 1.5rem; }
+  .countdown-item { min-width: 50px; }
+  .carousel-track { height: 280px; }
+  .nav { gap: 0.8rem; }
+  .nav a { letter-spacing: 1px; }
+  .mini-cal-grid .day { font-size: 0.9rem; padding: 0.35rem 0; }
+  .mini-cal-grid .day.highlight::before { width: 28px; height: 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Enter Overlay -->
+<div class="enter-overlay" id="enterOverlay">
+  <p class="enter-overlay-names">Peter &amp; Mary</p>
+  <p class="enter-overlay-sub">26 . 09 . 2026</p>
+  <button class="enter-overlay-btn">ENTER</button>
+</div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <a href="#hero" data-en="Home" data-zh="主頁">Home</a>
+  <a href="#countdown" data-en="Date" data-zh="日期">Date</a>
+  <a href="#story" data-en="Story" data-zh="我們的故事">Story</a>
+  <a href="#gallery" data-en="Gallery" data-zh="相冊">Gallery</a>
+  <a href="#info" data-en="Details" data-zh="詳情">Details</a>
+  <a href="#rsvp" data-en="RSVP" data-zh="出席回覆">RSVP</a>
+</nav>
+<button class="lang-btn" id="langToggle">中文</button>
+<button class="music-btn" id="musicToggle">♪ MUSIC</button>
+<audio id="bgMusic" loop>
+  <source src="backgroud_music/hitslab-wedding-wedding-trailer-music-269139.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Hero Section -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="pic/2.png" alt="Peter and Mary">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-frame"></div>
+
+  <div class="hero-content">
+    <div class="hero-names-row">
+      <h1 data-en="Peter" data-zh="Peter">Peter</h1>
+      <span class="hero-amp">&amp;</span>
+      <h1 data-en="Mary" data-zh="Mary">Mary</h1>
+    </div>
+    <p class="hero-pre" data-en="We're Getting Married" data-zh="我們即將步入婚姻殿堂">We're Getting Married</p>
+    <p class="hero-date">10 . 10 . 2026</p>
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- Message Section -->
+<div class="message-section full-section">
+  <div class="reveal">
+    <p class="message-text" data-en="We're getting married!&lt;br&gt;We hope you can join us on this special day and share in our joy.&lt;br&gt;We look forward to celebrating together with you!" data-zh="我們要結婚啦！&lt;br&gt;希望在這個特別的日子裡能和你一起分享我們的喜悅。&lt;br&gt;期待您的到來，和我們一起慶祝！">We're getting married!<br>We hope you can join us on this special day and share in our joy.<br>We look forward to celebrating together with you!</p>
+  </div>
+</div>
+
+<!-- Countdown Section -->
+<div class="countdown-section full-section" id="countdown">
+  <div class="reveal">
+    <p class="section-label" data-en="Save the Date" data-zh="記住這天">Save the Date</p>
+    <h2 class="section-title" data-en="Counting the Days" data-zh="倒數計時">Counting the Days</h2>
+    <p class="section-sub" data-en='Until we say "I do"' data-zh="見證我們的婚禮">Until we say "I do"</p>
+  </div>
+  <div class="countdown reveal" id="countdownTimer">
+    <div class="countdown-item">
+      <span class="countdown-number" id="days">000</span>
+      <span class="countdown-unit" data-en="Days" data-zh="天">Days</span>
+    </div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-item">
+      <span class="countdown-number" id="hours">00</span>
+      <span class="countdown-unit" data-en="Hours" data-zh="時">Hours</span>
+    </div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-item">
+      <span class="countdown-number" id="minutes">00</span>
+      <span class="countdown-unit" data-en="Minutes" data-zh="分">Minutes</span>
+    </div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-item">
+      <span class="countdown-number" id="seconds">00</span>
+      <span class="countdown-unit" data-en="Seconds" data-zh="秒">Seconds</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- Our Story Timeline -->
+<section class="timeline-section" id="story">
+  <div class="reveal">
+    <p class="section-label" data-en="Our Journey" data-zh="我們的旅程">Our Journey</p>
+    <h2 class="section-title" data-en="Our Love Story" data-zh="愛的故事">Our Love Story</h2>
+    <p class="section-sub" data-en="Every love story is beautiful" data-zh="每段愛情都是獨一無二的">Every love story is beautiful</p>
+    <div class="section-divider"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <p class="timeline-year">2020</p>
+      <p class="timeline-event" data-en="First Met" data-zh="初次相遇">First Met</p>
+      <p class="timeline-desc" data-en="A chance encounter at a friend's gathering that neither of us expected." data-zh="在朋友聚會上的一次意外邂逅，從此改變了彼此的生命。">A chance encounter at a friend's gathering that neither of us expected.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <p class="timeline-year">2021</p>
+      <p class="timeline-event" data-en="Started Dating" data-zh="開始交往">Started Dating</p>
+      <p class="timeline-desc" data-en="Our first date over coffee turned into hours of laughter and stories." data-zh="一杯咖啡的約會，延伸成了說不完的故事與笑聲。">Our first date over coffee turned into hours of laughter and stories.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <p class="timeline-year">2023</p>
+      <p class="timeline-event" data-en="Traveled Together" data-zh="一起旅行">Traveled Together</p>
+      <p class="timeline-desc" data-en="We explored the world side by side, creating memories in every corner." data-zh="我們並肩走遍世界各地，在每個角落留下共同的回憶。">We explored the world side by side, creating memories in every corner.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <p class="timeline-year">2025</p>
+      <p class="timeline-event" data-en="The Proposal" data-zh="浪漫求婚">The Proposal</p>
+      <p class="timeline-desc" data-en="Under a starlit sky, he got down on one knee and asked forever." data-zh="在繁星點點的夜空下，他單膝跪地，許下了永遠的承諾。">Under a starlit sky, he got down on one knee and asked forever.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <p class="timeline-year">2026</p>
+      <p class="timeline-event" data-en="Our Wedding Day" data-zh="婚禮之日">Our Wedding Day</p>
+      <p class="timeline-desc" data-en="The beginning of our forever — October 10, 2026." data-zh="永遠的開始 — 2026年10月10日。">The beginning of our forever — October 10, 2026.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="gallery-section" id="gallery">
+  <div class="reveal">
+    <p class="section-label" data-en="Our Story" data-zh="我們的故事">Our Story</p>
+    <h2 class="section-title" data-en="Moments Together" data-zh="共同的時光">Moments Together</h2>
+    <p class="section-sub" data-en="A journey of love" data-zh="愛的旅程">A journey of love</p>
+  </div>
+  <div class="carousel reveal">
+    <div class="carousel-track">
+      <div class="carousel-slide active">
+        <img src="pic/1.png" alt="Peter and Mary in the snow">
+        <span class="photo-meta">01 / 04</span>
+      </div>
+      <div class="carousel-slide">
+        <img src="pic/2.png" alt="Peter and Mary at sunset">
+        <span class="photo-meta">02 / 04</span>
+      </div>
+      <div class="carousel-slide">
+        <img src="pic/3.png" alt="Peter and Mary with flowers">
+        <span class="photo-meta">03 / 04</span>
+      </div>
+      <div class="carousel-slide">
+        <img src="pic/4.png" alt="Peter and Mary on a train">
+        <span class="photo-meta">04 / 04</span>
+      </div>
+    </div>
+    <button class="carousel-btn prev" aria-label="Previous">&#8249;</button>
+    <button class="carousel-btn next" aria-label="Next">&#8250;</button>
+    <div class="carousel-dots">
+      <button class="carousel-dot active"></button>
+      <button class="carousel-dot"></button>
+      <button class="carousel-dot"></button>
+      <button class="carousel-dot"></button>
+    </div>
+  </div>
+</section>
+
+<!-- Wedding Info -->
+<section class="info-section" id="info">
+  <div class="reveal">
+    <p class="section-label" data-en="Details" data-zh="詳情">Details</p>
+    <h2 class="section-title" data-en="Wedding Information" data-zh="婚禮資訊">Wedding Information</h2>
+    <p class="section-sub" data-en="Everything you need to know" data-zh="您需要知道的一切">Everything you need to know</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-card reveal">
+      <span class="info-icon">&#127970;</span>
+      <h3 data-en="Venue &amp; Time" data-zh="地點 &amp; 時間">Venue &amp; Time</h3>
+      <p data-en="台北萬豪酒店&lt;br&gt;Taipei Marriott Hotel&lt;br&gt;No. 199, Leshu Rd, Zhongshan District&lt;br&gt;Taipei City, Taiwan&lt;br&gt;&lt;br&gt;Reception: 6:00 PM&lt;br&gt;Dinner: 7:00 PM" data-zh="台北萬豪酒店&lt;br&gt;中山區樂群二路199號&lt;br&gt;台北市&lt;br&gt;&lt;br&gt;迎賓：下午6時&lt;br&gt;晚宴：下午7時">台北萬豪酒店<br>Taipei Marriott Hotel<br>No. 199, Leshu Rd, Zhongshan District<br>Taipei City, Taiwan<br><br>Reception: 6:00 PM<br>Dinner: 7:00 PM</p>
+    </div>
+
+    <div class="info-card info-card-cal reveal">
+      <div class="mini-cal">
+        <div class="mini-cal-header">
+          <span data-en="Saturday, October 10, 2026" data-zh="2026年10月10日（星期六）">Saturday, October 10, 2026</span>
+          <h4>October 2026</h4>
+        </div>
+        <div class="mini-cal-grid">
+          <span class="day-label">Su</span>
+          <span class="day-label">Mo</span>
+          <span class="day-label">Tu</span>
+          <span class="day-label">We</span>
+          <span class="day-label">Th</span>
+          <span class="day-label">Fr</span>
+          <span class="day-label">Sa</span>
+          <span class="day empty">.</span>
+          <span class="day empty">.</span>
+          <span class="day empty">.</span>
+          <span class="day empty">.</span>
+          <span class="day">1</span>
+          <span class="day">2</span>
+          <span class="day">3</span>
+          <span class="day">4</span>
+          <span class="day">5</span>
+          <span class="day">6</span>
+          <span class="day">7</span>
+          <span class="day">8</span>
+          <span class="day">9</span>
+          <span class="day highlight">10</span>
+          <span class="day">11</span>
+          <span class="day">12</span>
+          <span class="day">13</span>
+          <span class="day">14</span>
+          <span class="day">15</span>
+          <span class="day">16</span>
+          <span class="day">17</span>
+          <span class="day">18</span>
+          <span class="day">19</span>
+          <span class="day">20</span>
+          <span class="day">21</span>
+          <span class="day">22</span>
+          <span class="day">23</span>
+          <span class="day">24</span>
+          <span class="day">25</span>
+          <span class="day">26</span>
+          <span class="day">27</span>
+          <span class="day">28</span>
+          <span class="day">29</span>
+          <span class="day">30</span>
+          <span class="day">31</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-container reveal">
+    <iframe
+      src="https://maps.google.com/maps?q=台北萬豪酒店+台北市中山區樂群二路199號&t=&z=16&ie=UTF8&iwloc=&output=embed"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="台北萬豪酒店">
+    </iframe>
+  </div>
+  <div class="map-btns reveal">
+    <a class="map-btn" href="https://maps.google.com/?q=台北萬豪酒店+台北市中山區樂群二路199號" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+      Google Maps
+    </a>
+    <a class="map-btn" href="https://waze.com/ul?q=台北萬豪酒店+台北市" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10.9.1C4.9.7 0 5.8 0 12c0 4.7 2.7 8.9 6.8 11 .9.5 1.2 1.6.7 2.5l-1 1.8 2-.5c.4-.1.8 0 1.2.2 1.1.5 2.2.8 3.3.8 7.7 0 14-5.8 14-13S20.6-.6 10.9.1zm2.1 5.9c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm-6 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 9.3c-.7 2-2.5 3.3-4.6 3.5h-.8c-2.1-.2-3.9-1.5-4.6-3.5-.2-.5.1-1 .6-1.2.5-.2 1 .1 1.2.6.4 1.2 1.5 2 2.9 2.1h.6c1.4-.1 2.5-.9 2.9-2.1.2-.5.7-.8 1.2-.6.5.2.8.7.6 1.2z"/></svg>
+      Waze
+    </a>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section class="rsvp-section" id="rsvp">
+  <div class="reveal">
+    <p class="section-label" data-en="Respond" data-zh="回覆">Respond</p>
+    <h2 class="section-title">RSVP</h2>
+    <p class="section-sub" data-en="Kindly let us know if you can make it" data-zh="請告知您是否能出席">Kindly let us know if you can make it</p>
+    <div class="section-divider"></div>
+  </div>
+
+  <form class="rsvp-form reveal" id="rsvpForm" autocomplete="off">
+    <div class="rsvp-field">
+      <label for="rsvpName" data-en="Your Name" data-zh="您的姓名">Your Name</label>
+      <input type="text" id="rsvpName" name="name" placeholder="Full name" data-ph-en="Full name" data-ph-zh="全名" required>
+    </div>
+
+    <div class="rsvp-field">
+      <label for="rsvpEmail" data-en="Contact Number" data-zh="聯絡號碼">Contact Number</label>
+      <input type="tel" id="rsvpEmail" name="contact" placeholder="+886 0931-234-567" data-ph-en="+886 0931-234-567" data-ph-zh="+886 0931-234-567" required>
+    </div>
+
+    <div>
+      <div class="rsvp-field">
+        <label data-en="Attendance" data-zh="出席情況">Attendance</label>
+      </div>
+      <div class="rsvp-attendance">
+        <div class="rsvp-radio">
+          <input type="radio" id="attendYes" name="attending" value="yes" required checked onchange="document.getElementById('rsvpGuests').disabled=false;document.getElementById('rsvpGuests').style.opacity='';">
+          <label for="attendYes" data-en="Joyfully Accept" data-zh="我會出席">Joyfully Accept</label>
+        </div>
+        <div class="rsvp-radio">
+          <input type="radio" id="attendNo" name="attending" value="no" onchange="document.getElementById('rsvpGuests').disabled=true;document.getElementById('rsvpGuests').style.opacity='0.4';">
+
+          <label for="attendNo" data-en="Regretfully Decline" data-zh="無法出席">Regretfully Decline</label>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="rsvp-field">
+        <label data-en="Guest of" data-zh="賓客身份">Guest of</label>
+      </div>
+      <div class="rsvp-attendance">
+        <div class="rsvp-radio">
+          <input type="radio" id="guestBride" name="guestOf" value="bride" required checked>
+          <label for="guestBride" data-en="Bride's Side" data-zh="新娘親友">Bride's Side</label>
+        </div>
+        <div class="rsvp-radio">
+          <input type="radio" id="guestGroom" name="guestOf" value="groom">
+          <label for="guestGroom" data-en="Groom's Side" data-zh="新郎親友">Groom's Side</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="rsvp-field" id="guestsField">
+      <label for="rsvpGuests" data-en="Number of Guests" data-zh="出席人數">Number of Guests</label>
+      <select id="rsvpGuests" name="guests">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2" selected>2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+
+    <div class="rsvp-field">
+      <label for="rsvpMessage" data-en="Message to the Couple / Remarks" data-zh="給新人的話 / 備註">Message to the Couple / Remarks</label>
+      <textarea id="rsvpMessage" name="message" placeholder="Share your wishes..." data-ph-en="Share your wishes..." data-ph-zh="寫下您的祝福..."></textarea>
+    </div>
+
+    <button type="submit" class="rsvp-submit" data-en="Send RSVP" data-zh="提交回覆">Send RSVP</button>
+  </form>
+
+  <div class="rsvp-success" id="rsvpSuccess">
+    <span class="rsvp-success-icon">&#10084;</span>
+    <h3 data-en="Thank You!" data-zh="感謝您！">Thank You!</h3>
+    <p data-en="Your response has been received.&lt;br&gt;We can't wait to celebrate with you!" data-zh="已收到您的回覆。&lt;br&gt;期待與您共慶這美好時刻！">Your response has been received.<br>We can't wait to celebrate with you!</p>
+  </div>
+</section>
+
+<!-- Closing Message -->
+<div class="closing-section full-section">
+  <div class="reveal">
+    <p class="section-label" data-en="With Love" data-zh="真誠祝福">With Love</p>
+    <p class="closing-names" data-en="Peter &amp; Mary" data-zh="Peter &amp; Mary">Peter &amp; Mary</p>
+  </div>
+</div>
+
+
+<!-- Music Button -->
+
+<script>
+(function() {
+  'use strict';
+
+  // ========== Wedding Date ==========
+  const WEDDING_DATE = new Date('2026-10-10T18:00:00+08:00');
+
+  // ========== Nav Scroll ==========
+  const nav = document.getElementById('nav');
+  function handleNavScroll() {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  }
+  window.addEventListener('scroll', handleNavScroll, { passive: true });
+
+  // ========== Countdown ==========
+  const daysEl = document.getElementById('days');
+  const hoursEl = document.getElementById('hours');
+  const minutesEl = document.getElementById('minutes');
+  const secondsEl = document.getElementById('seconds');
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = WEDDING_DATE - now;
+
+    if (diff <= 0) {
+      daysEl.textContent = '0';
+      hoursEl.textContent = '00';
+      minutesEl.textContent = '00';
+      secondsEl.textContent = '00';
+      return;
+    }
+
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+
+    const nd = String(d);
+    const nh = String(h).padStart(2, '0');
+    const nm = String(m).padStart(2, '0');
+    const ns = String(s).padStart(2, '0');
+
+    if (daysEl.textContent !== nd) {
+      daysEl.textContent = nd;
+      daysEl.style.transform = 'scale(1.08)';
+      setTimeout(() => daysEl.style.transform = '', 200);
+    }
+    if (hoursEl.textContent !== nh) hoursEl.textContent = nh;
+    if (minutesEl.textContent !== nm) minutesEl.textContent = nm;
+    if (secondsEl.textContent !== ns) {
+      secondsEl.textContent = ns;
+      secondsEl.style.transform = 'scale(1.04)';
+      setTimeout(() => secondsEl.style.transform = '', 150);
+    }
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ========== Scroll Reveal ==========
+  const revealEls = document.querySelectorAll('.reveal, .timeline-item');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObs.observe(el));
+
+
+
+  // ========== Falling Petals ==========
+  var petalCount = 0;
+  var MAX_PETALS = 8;
+  var petalColors = ['#C4A882', '#D4C4A8', '#B8805A', '#C9B99A', '#A89278'];
+
+  function createPetal() {
+    if (petalCount >= MAX_PETALS || document.hidden) return;
+    petalCount++;
+    var p = document.createElement('div');
+    p.className = 'petal';
+    p.innerHTML = '<div class="petal-leaf"></div>';
+    p.style.left = Math.random() * 100 + 'vw';
+    var size = Math.random() * 10 + 12;
+    var leaf = p.querySelector('.petal-leaf');
+    leaf.style.width = size + 'px';
+    leaf.style.height = (size * 1.4) + 'px';
+    leaf.style.background = petalColors[Math.floor(Math.random() * petalColors.length)];
+    leaf.style.opacity = (Math.random() * 0.3 + 0.4).toFixed(2);
+    p.style.animationDuration = (Math.random() * 5 + 7) + 's';
+    document.body.appendChild(p);
+    p.addEventListener('animationend', () => { p.remove(); petalCount--; });
+  }
+
+  setInterval(createPetal, 3000);
+  for (var i = 0; i < 4; i++) setTimeout(createPetal, i * 500);
+
+  // ========== Gallery Carousel ==========
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('.carousel-dot');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  let currentSlide = 0;
+
+  function goToSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = (n + slides.length) % slides.length;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
+  setInterval(() => goToSlide(currentSlide + 1), 5000);
+
+  // ========== RSVP ==========
+  const rsvpForm = document.getElementById('rsvpForm');
+  const rsvpSuccess = document.getElementById('rsvpSuccess');
+
+
+  // TODO: Replace with your Google Apps Script Web App URL
+  const GOOGLE_SCRIPT_URL = '';
+
+  rsvpForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const submitBtn = rsvpForm.querySelector('.rsvp-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'SENDING...';
+    submitBtn.disabled = true;
+
+    const data = Object.fromEntries(new FormData(rsvpForm));
+
+    fetch(GOOGLE_SCRIPT_URL + '?' + new URLSearchParams(data), {
+      method: 'GET',
+      mode: 'no-cors'
+    })
+    .then(() => {
+      rsvpForm.style.display = 'none';
+      rsvpSuccess.classList.add('show');
+    })
+    .catch(() => {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    });
+  });
+
+  // ========== Smooth Scroll ==========
+  document.querySelectorAll('.nav a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const t = document.querySelector(link.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+})();
+</script>
+<script>
+  // Language toggle — standalone to avoid being blocked by other JS errors
+  (function() {
+    var currentLang = 'en';
+    var langBtn = document.getElementById('langToggle');
+    if (!langBtn) return;
+    langBtn.addEventListener('click', function() {
+      currentLang = currentLang === 'en' ? 'zh' : 'en';
+      langBtn.textContent = currentLang === 'en' ? '中文' : 'EN';
+      document.querySelectorAll('[data-en]').forEach(function(el) {
+        el.innerHTML = el.getAttribute('data-' + currentLang);
+      });
+      document.querySelectorAll('[data-ph-en]').forEach(function(el) {
+        el.placeholder = el.getAttribute('data-ph-' + currentLang);
+      });
+    });
+  })();
+</script>
+<script>
+  // Enter overlay + music start
+  (function() {
+    var overlay = document.getElementById('enterOverlay');
+    var music = document.getElementById('bgMusic');
+    var btn = document.getElementById('musicToggle');
+    if (!overlay || !music || !btn) return;
+
+    music.volume = 0.4;
+
+    overlay.addEventListener('click', function() {
+      overlay.classList.add('hide');
+      setTimeout(function() { overlay.style.display = 'none'; }, 800);
+      music.play().then(function() {
+        btn.textContent = '⏸ PAUSE';
+        btn.classList.add('playing');
+      }).catch(function() {});
+    });
+
+    // Button toggles play/pause
+    btn.addEventListener('click', function() {
+      if (music.paused) {
+        music.play();
+        btn.textContent = '⏸ PAUSE';
+        btn.classList.add('playing');
+      } else {
+        music.pause();
+        btn.textContent = '♪ MUSIC';
+        btn.classList.remove('playing');
+      }
+    });
+  })();
+</script>
+</body>
+</html>
