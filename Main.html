@@ -941,6 +941,30 @@ section, .full-section {
   letter-spacing: 3px;
 }
 
+/* ========== Copyright Footer ========== */
+.copyright-footer {
+  text-align: center;
+  padding: 2rem 2rem 1.5rem;
+  background: var(--warm-white);
+  border-top: 1px solid var(--light-gray);
+}
+
+.copyright-footer img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 0.8rem;
+  opacity: 0.85;
+}
+
+.copyright-footer p {
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+}
+
 /* ========== Footer ========== */
 .footer {
   text-align: center;
@@ -1157,7 +1181,7 @@ section, .full-section {
 <!-- Enter Overlay -->
 <div class="enter-overlay" id="enterOverlay">
   <p class="enter-overlay-names">Peter &amp; Mary</p>
-  <p class="enter-overlay-sub">26 . 09 . 2026</p>
+  <p class="enter-overlay-sub">10 . 10 . 2026</p>
   <button class="enter-overlay-btn">ENTER</button>
 </div>
 
@@ -1496,6 +1520,12 @@ section, .full-section {
   </div>
 </div>
 
+<!-- Copyright Footer -->
+<footer class="copyright-footer">
+  <img src="pic/logo.jpg" alt="Chiachonglilia Wedding Invitations">
+  <p>© 2026 Chiachonglilia. All rights reserved.</p>
+</footer>
+
 
 <!-- Music Button -->
 
@@ -1708,6 +1738,15 @@ section, .full-section {
       }
     });
   })();
+</script>
+<script>
+  // Disable right-click
+  document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'F12' || (e.ctrlKey && (e.key === 'u' || e.key === 's' || e.key === 'i'))) {
+      e.preventDefault();
+    }
+  });
 </script>
 </body>
 </html>
